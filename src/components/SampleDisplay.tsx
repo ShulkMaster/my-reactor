@@ -1,3 +1,4 @@
+import {Count} from './samples/Count';
 import {Hide} from './samples/Hide';
 import {Sample} from 'types';
 
@@ -11,7 +12,7 @@ export const SampleDisplay = ({sample}: SampleDisplayPros): JSX.Element => {
     case 'Each':
       return <p>Not implemented</p>;
     case 'Count':
-      return <p>Not implemented</p>;
+      return <Count/>;
     case 'Filter':
       return <p>Not implemented</p>;
     case 'Map':

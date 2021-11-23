@@ -17,7 +17,7 @@ export const Highlight = ({code}: HighlightProps) => {
   }, [ref]);
 
   return (
-    <pre ref={ref} style={{padding: '.5em'}}>
+    <pre ref={ref} style={{padding: '.5em', margin: '1em 0'}}>
       <code className="language-typescript" children={code}/>
     </pre>
   );
