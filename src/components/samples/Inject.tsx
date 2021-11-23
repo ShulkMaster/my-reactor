@@ -1,3 +1,4 @@
+import {AppSample} from 'app.sample';
 import {CheckboxChangeEvent} from 'antd/es/checkbox';
 import {Highlight} from 'components/Highlight';
 import {InputNumberProps} from 'antd/lib/input-number';
@@ -70,6 +71,8 @@ export const Inject = () => {
       </Injector>
       <br/>
       <p style={{fontSize: '2rem'}}>{newCode}</p>
+      <br/>
+      <Highlight code={AppSample.inject}/>
     </Card>
   );
 };

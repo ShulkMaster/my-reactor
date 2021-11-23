@@ -133,4 +133,74 @@ export const Wrapper: FC = ({children}) => {
   );
 };
   `,
+  inject: `
+import {CheckboxChangeEvent} from 'antd/es/checkbox';
+import {InputNumberProps} from 'antd/lib/input-number';
+import {InputProps} from 'antd/lib/input/Input';
+import {
+  Card,
+  Typography,
+  Switch,
+  Checkbox,
+  Input,
+  InputNumber,
+  DatePicker,
+  DatePickerProps,
+} from 'antd';
+import MonLib, {Moment} from 'moment';
+import {Children, cloneElement} from 'react';
+
+export const Injector = ({children, settings, onChange, title}: InjectorProps) => {
+  const checked = settings.mainSetting;
+
+  const changeHandle = <T extends keyof AppSettings>(key: T, value: AppSettings[T]) => {
+    onChange({[key]: value});
+  };
+
+  const clonedChildren = Children.map(children, child => {
+    const type = child.type;
+    if (typeof type === 'string') return child;
+    const key = child.key as keyof AppSettings;
+    if (type === Checkbox) {
+      return cloneElement<CheckboxProps>(child, {
+        disabled: !checked,
+        checked: Boolean(settings[key]),
+        onChange: (evt: CheckboxChangeEvent) => changeHandle(key, evt.target.checked),
+      });
+    }
+    if (type === Input) {
+      return cloneElement<InputProps>(child, {
+        disabled: !checked,
+        value: settings[key].toString(),
+        onChange: (evt) => changeHandle(key, evt.target.value),
+      });
+    }
+    if (type === InputNumber) {
+      return cloneElement<InputNumberProps>(child, {
+        disabled: !checked,
+        value: Number(settings[key]),
+        onChange: (evt) => changeHandle(key, evt),
+      });
+    }
+    if (type === DatePicker) {
+      return cloneElement<DatePickerProps>(child, {
+        disabled: !checked,
+        value: settings[key] as Moment,
+        onChange: (date) => changeHandle(key, date || MonLib()),
+      });
+    }
+    return child;
+  });
+
+  return (
+    <Card hoverable bordered>
+      <Card.Meta>
+        <Typography.Title level={4} children={title}/>
+      </Card.Meta>
+      <Switch checked={checked} onChange={e => changeHandle('mainSetting', e)}/>
+      {clonedChildren}
+    </Card>
+  );
+};
+  `,
 } as const;
