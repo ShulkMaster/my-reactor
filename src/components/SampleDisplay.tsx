@@ -2,6 +2,7 @@ import {Count} from './samples/Count';
 import {Each} from './samples/Each';
 import {Filter} from './samples/Filter';
 import {Hide} from './samples/Hide';
+import {Inject} from './samples/Inject';
 import {Map} from './samples/Map';
 import {Sample} from 'types';
 
@@ -21,6 +22,6 @@ export const SampleDisplay = ({sample}: SampleDisplayPros): JSX.Element => {
     case 'Map':
       return <Map/>;
     case 'Inject':
-      return <p>Not implemented</p>;
+      return <Inject />;
   }
 };
