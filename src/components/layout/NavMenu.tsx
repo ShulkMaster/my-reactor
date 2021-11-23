@@ -1,4 +1,3 @@
-import {CSSProperties} from 'react';
 import {Menu} from 'antd';
 import {Sample} from 'types';
 import {
@@ -6,7 +5,9 @@ import {
   HeatMapOutlined,
   CompressOutlined,
   SlidersOutlined,
-  ThunderboltOutlined,
+  LineHeightOutlined,
+  DeleteRowOutlined,
+  PullRequestOutlined,
 } from '@ant-design/icons';
 
 export type NavMenuProps = {
@@ -23,9 +24,21 @@ export const NavMenu = ({onChange}: NavMenuProps) => {
       <Menu.Item onClick={() => onChange('Count')}>
         <SlidersOutlined/> Count
       </Menu.Item>
-      <Menu.Item><HeatMapOutlined/> Cooling</Menu.Item>
-      <Menu.Item><CompressOutlined/> Pressure</Menu.Item>
-      <Menu.Item><ThunderboltOutlined/> Power</Menu.Item>
+      <Menu.Item onClick={() => onChange('Each')}>
+        <HeatMapOutlined/> ForEach
+      </Menu.Item>
+      <Menu.Item onClick={() => onChange('Filter')}>
+        <CompressOutlined/> Filter
+      </Menu.Item>
+      <Menu.Item onClick={() => onChange('Map')}>
+        <LineHeightOutlined/> Map
+      </Menu.Item>
+      <Menu.Item onClick={() => onChange('Wrap')}>
+        <DeleteRowOutlined/> Wrap
+      </Menu.Item>
+      <Menu.Item onClick={() => onChange('Inject')}>
+        <PullRequestOutlined/> Inject
+      </Menu.Item>
     </Menu>
   );
 };

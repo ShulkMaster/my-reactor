@@ -15,39 +15,46 @@ export const Hide: FC = ({children}) => {
 };`,
   count1: `
 import {Typography} from 'antd';
-import {FC, Children} from 'react';
+import {FC, Children, CSSProperties} from 'react';
 
 const CounterChild: FC = ({children}) => {
   const numberOfChildren = Children.count(children);
+  const style: CSSProperties = {
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+  };
   return (
     <>
       <Typography.Title level={3}>Number of children {numberOfChildren}</Typography.Title>
-      {children}
+      <div style={style}>{children}</div>
     </>
   );
-};`,
+};
+`,
   count2: `
 import {Typography} from 'antd';
 import {FC, Children, CSSProperties} from 'react';
 
 const AlterChild: FC = ({children}) => {
- const isOdd = Children.count(children) % 2 === 0;
- const style: CSSProperties = {
-   width: 80,
-   height: 80,
-   background: isOdd ? '#dff' : '#fdd',
-   textAlign: 'center',
-   lineHeight: 6,
+  const isOdd = Children.count(children) % 2 === 0;
+  const style: CSSProperties = {
+    width: 80,
+    height: 80,
+    background: isOdd ? '#dff' : '#fdd',
+    textAlign: 'center',
+    lineHeight: 6,
   };
 
- return (
-   <>
-     <Typography.Title level={3}>Blue if children amount is odd</Typography.Title>
-     <div style={style}>
-       {Children.count(children)}
-     </div>
-   </>
- );
+  return (
+    <>
+      <Typography.Title level={3}>Blue if children amount is odd</Typography.Title>
+      <div style={style}>
+        {Children.count(children)}
+      </div>
+      {children}
+    </>
+  );
 };
   `,
 } as const;
