@@ -4,5 +4,4 @@ export type Sample =
   | 'Count'
   | 'Filter'
   | 'Map'
-  | 'Wrap'
   | 'Inject';

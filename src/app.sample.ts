@@ -31,7 +31,7 @@ const CounterChild: FC = ({children}) => {
     </>
   );
 };
-`,
+  `,
   count2: `
 import {Typography} from 'antd';
 import {FC, Children, CSSProperties} from 'react';
@@ -79,6 +79,58 @@ export const AddDivider: FC = ({children}) => {
 };
   `,
   each2: `
+import {cloneDeepWith} from 'lodash';
+import {Highlight} from 'components/Highlight';
+import {List} from 'antd';
+import { FC, Children} from 'react';
 
+export const Inspect: FC = ({children}) => {
+  const items: string[] = [];
+  Children.forEach(children, child => {
+    if (!child) return;
+    if (typeof child === 'object' && 'props' in child) {
+      const clone = cloneDeepWith(child.props, (value) => {
+        return value.children.map(c => ({...c, _owner: null}));
+      });
+      const output = JSON.stringify(clone, null, 2);
+      items.push(output);
+    }
+  });
+  return (
+    <List>
+      {items.map((code, index) => (
+        <List.Item key={index}>
+          <Highlight code={code}/>
+        </List.Item>
+      ))}
+    </List>
+  );
+};
+  `,
+  map: `
+import {Collapse, Typography} from 'antd';
+import {FC, Children} from 'react';
+
+export const Wrapper: FC = ({children}) => {
+  const wrappedChildren = Children.map(children, (child, index) => {
+    const head = (child as any).type.displayName || (child as any).type.name;
+    return (
+      <Collapse.Panel key={index} header={head}>
+        {child}
+      </Collapse.Panel>
+    );
+  });
+
+  return (
+    <div>
+      <Typography.Title level={4}>Before</Typography.Title>
+      {children}
+      <Typography.Title level={4}>After</Typography.Title>
+      <Collapse defaultActiveKey={[1]}>
+        {wrappedChildren}
+      </Collapse>
+    </div>
+  );
+};
   `,
 } as const;

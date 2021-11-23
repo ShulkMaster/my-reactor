@@ -30,6 +30,7 @@ export const Each = () => {
       <AddDivider children={children}/>
       <Highlight code={AppSample.each1}/>
       <Typography.Title level={3}>Inspecting children</Typography.Title>
+      <Highlight code={AppSample.each2}/>
       <Inspect children={children}/>
     </Card>
   );

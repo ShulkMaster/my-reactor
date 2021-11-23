@@ -2,6 +2,7 @@ import {Count} from './samples/Count';
 import {Each} from './samples/Each';
 import {Filter} from './samples/Filter';
 import {Hide} from './samples/Hide';
+import {Map} from './samples/Map';
 import {Sample} from 'types';
 
 export type SampleDisplayPros = {
@@ -18,9 +19,7 @@ export const SampleDisplay = ({sample}: SampleDisplayPros): JSX.Element => {
     case 'Filter':
       return <Filter/>;
     case 'Map':
-      return <p>Not implemented</p>;
-    case 'Wrap':
-      return <p>Not implemented</p>;
+      return <Map/>;
     case 'Inject':
       return <p>Not implemented</p>;
   }

@@ -33,9 +33,6 @@ export const NavMenu = ({onChange}: NavMenuProps) => {
       <Menu.Item onClick={() => onChange('Map')}>
         <LineHeightOutlined/> Map
       </Menu.Item>
-      <Menu.Item onClick={() => onChange('Wrap')}>
-        <DeleteRowOutlined/> Wrap
-      </Menu.Item>
       <Menu.Item onClick={() => onChange('Inject')}>
         <PullRequestOutlined/> Inject
       </Menu.Item>
