@@ -15,7 +15,7 @@ export const AppLayout = () => {
         <Layout.Header>
           <Typography.Title style={{color: '#fff'}}>My Reactor</Typography.Title>
         </Layout.Header>
-        <Layout.Content style={{padding: '1em'}}>
+        <Layout.Content style={{padding: '1em', minHeight: '100vh'}}>
           <SampleDisplay sample={sample}/>
         </Layout.Content>
       </Layout>

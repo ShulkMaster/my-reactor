@@ -8,9 +8,9 @@ export const Hide: FC = ({children}) => {
   return (
     <Card>
       <Typography.Title level={2}>Dynamic displaying children</Typography.Title>
-      <Highlight code={AppSample.hide}/>
       <Checkbox checked={show} onChange={() => setShow(!show)}>Mostrar</Checkbox>
       {show && children}
+      <Highlight code={AppSample.hide}/>
     </Card>
   );
 };

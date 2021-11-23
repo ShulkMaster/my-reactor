@@ -57,4 +57,28 @@ const AlterChild: FC = ({children}) => {
   );
 };
   `,
+  each1: `
+import {Typography, Divider} from 'antd';
+import {FC, Children, ReactNode} from 'react';
+
+export const AddDivider: FC = ({children}) => {
+  const separateChildren: ReactNode[] = [];
+  Children.forEach(children, child => {
+    separateChildren.push(child);
+    separateChildren.push(<Divider/>);
+  });
+
+  return (
+    <div>
+      <Typography.Title level={4}>Before</Typography.Title>
+      {children}
+      <Typography.Title level={4}>After</Typography.Title>
+      {separateChildren}
+    </div>
+  );
+};
+  `,
+  each2: `
+
+  `,
 } as const;

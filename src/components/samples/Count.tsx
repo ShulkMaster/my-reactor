@@ -4,8 +4,8 @@ import {Card, Typography, Alert, InputNumber} from 'antd';
 import {useState, FC, Children, CSSProperties} from 'react';
 
 export const Count = () => {
-  const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(0);
+  const [count, setCount] = useState(3);
+  const [count2, setCount2] = useState(3);
 
   const children: JSX.Element[] = [];
   const children2: JSX.Element[] = [];
@@ -19,18 +19,18 @@ export const Count = () => {
   return (
     <Card>
       <Typography.Title level={2}>Counting Children</Typography.Title>
-      <Highlight code={AppSample.count1}/>
       <label>
         <p>Amount</p>
         <InputNumber value={count} onChange={setCount} min={0} max={15}/>
       </label>
       <CounterChild>{children}</CounterChild>
-      <Highlight code={AppSample.count2}/>
+      <Highlight code={AppSample.count1}/>
       <label>
         <p>Amount</p>
         <InputNumber value={count2} onChange={setCount2} min={0} max={15}/>
       </label>
       <AlterChild children={children2}/>
+      <Highlight code={AppSample.count2}/>
     </Card>
   );
 };
