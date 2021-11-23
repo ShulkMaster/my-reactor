@@ -59,7 +59,7 @@ export const Inspect: FC = ({children}) => {
     if (!child) return;
     if (typeof child === 'object' && 'props' in child) {
       const clone = cloneDeepWith(child.props, (value) => {
-        return value.children.map(c => ({...c, _owner: null}));
+        return value.children.map((c: object) => ({...c, _owner: null}));
       });
       const output = JSON.stringify(clone, null, 2);
       items.push(output);
