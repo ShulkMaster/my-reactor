@@ -1,7 +1,8 @@
 import {AppSample} from 'app.sample';
+import {cloneDeepWith} from 'lodash';
 import {Highlight} from 'components/Highlight';
-import {Card, Typography, Divider, InputNumber} from 'antd';
-import {useState, FC, Children, ReactNode} from 'react';
+import {Card, Typography, Divider, InputNumber, List} from 'antd';
+import React, {useState, FC, Children, ReactNode} from 'react';
 
 export const Each = () => {
   const [count, setCount] = useState(3);
@@ -11,6 +12,7 @@ export const Each = () => {
       <Card
         hoverable
         style={{width: 240}}
+        key={x}
       >
         <Card.Meta title="Europe Street beat" description="www.instagram.com"/>
         <Card.Meta description={`Child ${x + 1}`}/>
@@ -27,6 +29,8 @@ export const Each = () => {
       <Typography.Title level={3}>Adding Dividers</Typography.Title>
       <AddDivider children={children}/>
       <Highlight code={AppSample.each1}/>
+      <Typography.Title level={3}>Inspecting children</Typography.Title>
+      <Inspect children={children}/>
     </Card>
   );
 };
@@ -45,5 +49,28 @@ export const AddDivider: FC = ({children}) => {
       <Typography.Title level={4}>After</Typography.Title>
       {separateChildren}
     </div>
+  );
+};
+
+export const Inspect: FC = ({children}) => {
+  const items: string[] = [];
+  Children.forEach(children, child => {
+    if (!child) return;
+    if (typeof child === 'object' && 'props' in child) {
+      const clone = cloneDeepWith(child.props, (value) => {
+        return value.children.map(c => ({...c, _owner: null}));
+      });
+      const output = JSON.stringify(clone, null, 2);
+      items.push(output);
+    }
+  });
+  return (
+    <List>
+      {items.map((code, index) => (
+        <List.Item key={index}>
+          <Highlight code={code}/>
+        </List.Item>
+      ))}
+    </List>
   );
 };

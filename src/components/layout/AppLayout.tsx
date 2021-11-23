@@ -8,13 +8,13 @@ export const AppLayout = () => {
   const [sample, setSample] = useState<Sample>('Hide');
   return (
     <Layout>
-      <Layout.Sider collapsible>
-        <NavMenu onChange={setSample}/>
-      </Layout.Sider>
+      <Layout.Header>
+        <Typography.Title style={{color: '#fff'}}>My Reactor</Typography.Title>
+      </Layout.Header>
       <Layout>
-        <Layout.Header>
-          <Typography.Title style={{color: '#fff'}}>My Reactor</Typography.Title>
-        </Layout.Header>
+        <Layout.Sider collapsible>
+          <NavMenu onChange={setSample}/>
+        </Layout.Sider>
         <Layout.Content style={{padding: '1em', minHeight: '100vh'}}>
           <SampleDisplay sample={sample}/>
         </Layout.Content>
